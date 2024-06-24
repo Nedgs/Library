@@ -1,0 +1,13 @@
+<h1><%= @book.title %></h1>
+<p>Author: <%= @book.author %></p>
+<p>Published Year: <%= @book.publish_year %></p>
+
+<% if @book.borrows.where(ended_at: nil).exists? %>
+  <p>This book is currently borrowed.</p>
+<% else %>
+  <%= form_with model: Borrow.new, url: borrows_path do |form| %>
+    <%= form.hidden_field :user_id, value: current_user.id %>
+    <%= form.hidden_field :book_id, value: @book.id %>
+    <%= form.submit 'Borrow this book' %>
+  <% end %>
+<% end %>
