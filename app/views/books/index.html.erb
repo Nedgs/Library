@@ -1,12 +1,26 @@
-<h1>Books</h1>
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Library</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
 
-<%= link_to 'Add new book', new_book_path %>
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+  </head>
 
-<ul>
-  <% @books.each do |book| %>
-    <li>
-      <%= link_to book.title, book_path(book) %>
-      by <%= book.author %>
-    </li>
-  <% end %>
-</ul>
+  <body class="bg-light">
+    <div class="container mt-5">
+      <h1 class="text-center text-success">Books</h1>
+      <%= link_to 'Add new book', new_book_path, class: 'btn btn-success mb-3' %>
+      <ul class="list-group">
+        <% @books.each do |book| %>
+          <li class="list-group-item">
+            <%= link_to book.title, book_path(book) %> by <%= book.author %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  </body>
+</html>
