@@ -17,8 +17,14 @@
       <p class="text-center">Published Year: <%= @book.publish_year %></p>
 
       <% if current_user %>
-        <% if @book.borrows.where(ended_at: nil).exists? %>
-          <p class="text-center text-danger">This book is currently borrowed.</p>
+        <% active_borrow = @book.borrows.find_by(user: current_user, ended_at: nil) %>
+        <% if active_borrow %>
+          <p class="text-center text-danger">You have currently borrowed this book.</p>
+          <%= form_with model: active_borrow, url: borrow_path(active_borrow), method: :delete, local: true, class: 'form-inline justify-content-center' do |form| %>
+            <%= form.submit 'Return this book', class: 'btn btn-warning' %>
+          <% end %>
+        <% elsif @book.borrows.where(ended_at: nil).exists? %>
+          <p class="text-center text-danger">This book is currently borrowed by someone else.</p>
         <% else %>
           <%= form_with model: Borrow.new, url: borrows_path, local: true, class: 'form-inline justify-content-center' do |form| %>
             <%= form.hidden_field :user_id, value: current_user.id %>

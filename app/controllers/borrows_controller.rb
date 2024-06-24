@@ -1,4 +1,6 @@
 class BorrowsController < ApplicationController
+    before_action :require_login
+  
     def create
       @borrow = Borrow.new(borrow_params)
       @borrow.started_at = Time.current
