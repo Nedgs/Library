@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
     skip_before_action :require_login, only: [:new, :create]
-    before_action :set_user, only: [:borrowed_books]
+    before_action :set_user, only: [:borrowed_books, :borrow_history]
   
     def new
       @user = User.new
@@ -17,6 +17,10 @@ class UsersController < ApplicationController
   
     def borrowed_books
       @borrowed_books = @user.current_borrowed_books
+    end
+  
+    def borrow_history
+      @borrow_history = @user.borrows.includes(:book)
     end
   
     private
