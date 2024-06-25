@@ -31,3 +31,15 @@
 .navbar-brand {
     color: white !important;
 }
+
+.navbar .btn-login,
+.navbar .btn-register,
+.navbar .btn-logout {
+  background-color: #198754 !important;
+  color: white !important;
+  border-radius: 4px;
+  padding: 5px 10px;
+  margin-right: 5px;
+  display: flex;
+  align-items: center;
+}
