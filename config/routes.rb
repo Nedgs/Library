@@ -6,6 +6,8 @@ Rails.application.routes.draw do
     get '/register', to: 'users#new'
     post '/register', to: 'users#create'
   
+    get '/users/:id/borrowed_books', to: 'users#borrowed_books', as: 'borrowed_books_user'
+  
     # Routes for Book
     resources :books
   

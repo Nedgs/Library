@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
     skip_before_action :require_login, only: [:new, :create]
+    before_action :set_user, only: [:edit, :update, :destroy, :borrowed_books]
   
     def new
       @user = User.new
@@ -14,7 +15,15 @@ class UsersController < ApplicationController
       end
     end
   
+    def borrowed_books
+      @borrowed_books = @user.current_borrowed_books
+    end
+  
     private
+  
+    def set_user
+      @user = User.find(params[:id])
+    end
   
     def user_params
       params.require(:user).permit(:email, :password, :password_confirmation)
