@@ -14,3 +14,20 @@
     margin-bottom: 20px !important;
 }
   
+@import "bootstrap";
+
+.navbar.bg-custom {
+  background-color: #65bc7b;
+}
+
+.navbar .nav-link {
+  color: white !important;
+}
+
+.navbar {
+    padding: 0 !important;
+}
+
+.navbar-brand {
+    color: white !important;
+}

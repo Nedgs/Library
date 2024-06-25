@@ -13,13 +13,20 @@
   <body class="bg-light">
     <div class="container mt-5">
       <h1 class="text-center text-success">Borrowed Books</h1>
-      <ul class="list-group">
-        <% @borrowed_books.each do |book| %>
-          <li class="list-group-item">
-            <%= link_to book.title, book_path(book) %> by <%= book.author %>
-          </li>
-        <% end %>
-      </ul>
+      <% if @borrowed_books.any? %>
+        <ul class="list-group">
+          <% @borrowed_books.each do |book| %>
+            <li class="list-group-item">
+              <%= link_to book.title, book_path(book) %> by <%= book.author %>
+            </li>
+          <% end %>
+        </ul>
+      <% else %>
+        <p class="text-center text-muted">No books currently borrowed.</p>
+      <% end %>
+      <div class="text-center mt-4">
+        <%= link_to 'Back to Books List', books_path, class: 'btn btn-secondary' %>
+      </div>
     </div>
   </body>
 </html>

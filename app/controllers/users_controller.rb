@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
     skip_before_action :require_login, only: [:new, :create]
-    before_action :set_user, only: [:edit, :update, :destroy, :borrowed_books]
+    before_action :set_user, only: [:borrowed_books]
   
     def new
       @user = User.new
