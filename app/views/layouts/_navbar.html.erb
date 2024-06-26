@@ -1,10 +1,12 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-custom">
   <div class="container-fluid">
-   <a class="navbar-brand" href="<%= books_path %>">
+    <a class="navbar-brand d-flex align-items-center" href="<%= books_path %>">
       <img src="<%= asset_path('logo.png') %>" alt="Logo" style="height: 50px;">
+      <span class="ms-2">Books</span>
     </a>
-    <a class="navbar-brand nav-link" href="<%= books_path %>">Books</a>
-    <a class="navbar-brand nav-link" href="<%= borrow_history_user_path(current_user) %>">Borrow History</a>
+    <% if logged_in? %>
+      <a class="navbar-brand nav-link" href="<%= borrow_history_user_path(current_user) %>">Borrow History</a>
+    <% end %>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
