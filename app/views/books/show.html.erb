@@ -26,7 +26,7 @@
         <% elsif @book.borrows.where(ended_at: nil).exists? %>
           <p class="text-center text-danger">This book is currently borrowed by someone else.</p>
         <% else %>
-          <%= form_with model: Borrow.new, url: borrows_path, local: true, class: 'form-inline justify-content-center' do |form| %>
+          <%= form_with model: Borrow.new, url: borrows_path, local: true, class: 'button-section-yo form-inline justify-content-center' do |form| %>
             <%= form.hidden_field :user_id, value: current_user.id %>
             <%= form.hidden_field :book_id, value: @book.id %>
             <%= form.submit 'Borrow this book', class: 'btn btn-success' %>
@@ -36,10 +36,10 @@
         <p class="text-center">You need to <%= link_to 'login', login_path %> to borrow this book.</p>
       <% end %>
 
-      <div class="text-center mt-3">
+      <div class="button-section-yo d-flex justify-content-center mt-3">
         <%= link_to 'Edit', edit_book_path(@book), class: 'btn btn-warning' %>
         <%= link_to 'Back', books_path, class: 'btn btn-secondary' %>
-        <%= link_to 'Delete', @book, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
+        <%= button_to 'Delete', @book, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
       </div>
     </div>
   </body>
